@@ -6,12 +6,6 @@ class PatientsController < ApplicationController
     if @current_user.type.eql?("Doctor")
       @user = User.find_by(id: @current_user.id)
       @patients = @user.patients
-
-      # scope is calling
-      # @patients = @user.patients.older_than_20
-
-      # class method calling
-        # @patients = Patient.older_than_20
     else
       @patients = Patient.all
     end
@@ -24,18 +18,7 @@ class PatientsController < ApplicationController
   def create
     @patient = Patient.create(patient_params)
     if @patient.valid?
-
-      # sending email job using sidekiq
-      # MyFirstJob.perform_async(@patient.id)
-
-      # sending email normal way
       CrudNotificationMailer.create(@patient).deliver_now
-
-      # sending email pass params to a mailer action
-
-      # CrudNotificationMailer.with(patient: @patient).create.deliver_now
-
-
       flash[:errors] = 'Created Successfully'
       redirect_to patients_path
     else

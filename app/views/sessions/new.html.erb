@@ -1,13 +1,18 @@
 
-<h1>Login</h1>
-
-<%= form_with(url: login_path, local: true) do |f| %>
-  <%= f.label :email %>
-  <%= f.email_field :email %>
-
-  <%= f.label :password %>
-  <%= f.password_field :password %>
-
-  <%= f.submit 'Log in' %>
+<div class="d-flex justify-content-center align-itmes-center flex-column p-5 mt-5">
+  <div class="w-50 mx-auto p-5">
+    <h1 class="text-center">Login</h1>
+    <%= form_with(url: login_path, local: true) do |f| %>
+    <div class="form-group">
+      <label for="exampleInputEmail1">Email address</label>
+      <%= f.email_field :email, class:"form-control", id:"exampleInputEmail1" %>
+    </div>
+    <div class="form-group mt-2">
+      <label for="exampleInputPassword1">Password</label>
+      <%= f.password_field :password, class:"form-control", id:"exampleInputPassword1" %>
+    </div>
+      <%= f.submit 'Log in', class:"btn btn-primary mt-4" %>
+  </div>
+</div>
 <% end %>
 
